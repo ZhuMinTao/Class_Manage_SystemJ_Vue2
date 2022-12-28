@@ -5,6 +5,7 @@
 </template>
 
 <style lang="less">
+
 .default_title{
   display: block;
   margin-top: 100px;
