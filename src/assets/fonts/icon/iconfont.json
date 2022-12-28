@@ -1,0 +1,44 @@
+{
+  "id": "3836896",
+  "name": "new_class_system",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1263326",
+      "name": "纪要",
+      "font_class": "jiyao",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "4910616",
+      "name": "纪律处分",
+      "font_class": "jilvchufen",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "6204762",
+      "name": "成绩录入",
+      "font_class": "chengjiluru",
+      "unicode": "e650",
+      "unicode_decimal": 58960
+    },
+    {
+      "icon_id": "6246283",
+      "name": "课程表",
+      "font_class": "kebiao",
+      "unicode": "e678",
+      "unicode_decimal": 59000
+    },
+    {
+      "icon_id": "8827523",
+      "name": "花名册",
+      "font_class": "huamingce",
+      "unicode": "e71a",
+      "unicode_decimal": 59162
+    }
+  ]
+}
