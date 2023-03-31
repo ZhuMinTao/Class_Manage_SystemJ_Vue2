@@ -176,7 +176,7 @@ export default {
                 type:"success",
                 message:"修改成功!"
             })
-
+            this.setAssigment(0)
             //清空控件的内容
             Object.keys(this.submitFormData).forEach(item=>{
             this.submitFormData[item] = ""

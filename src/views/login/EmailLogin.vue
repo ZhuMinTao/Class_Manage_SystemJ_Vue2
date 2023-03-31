@@ -118,7 +118,7 @@ export default {
                 return
             }
 
-            this.setAssigment(300)
+            this.setAssigment(60)
 
             //恢复默认样式
             this.$refs.email.parentNode.style = ""
@@ -136,7 +136,10 @@ export default {
             this.$refs.code.parentNode.style = "border:2px solid rgba(243, 61, 61, 0.836) !important;"
             this.logObject.submitLog = data.message
         }else{
-            this.$router.push("/home_layout")
+            localStorage.setItem("new_class_system_token",data.token)
+            this.setAssigment(0)
+            this.$router.push("/")
+            
         }
     },
      ...mapActions(['setAssigment'])

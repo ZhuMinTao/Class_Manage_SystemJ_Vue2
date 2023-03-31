@@ -28,6 +28,7 @@
 <script>
 
 import {accountExist,checkLogin} from '@/api/verification'
+import { mapActions, mapState } from 'vuex';
 export default {
   name:"Register",
   data() {
@@ -75,7 +76,7 @@ export default {
        //发送请求
         accountExist(this.accountSubmit.userCode)
         .then(res=>{
-            let{data} = res
+            let {data} = res
 
             let [logMsg,styleMsg] = ""
             if(data.code!=200){
@@ -116,14 +117,26 @@ export default {
 
        let {data} = await checkLogin(this.accountSubmit)
        if(data.code==200){
-           localStorage.setItem("new_class_system_token",data.token)
-           this.$router.push("/home_layout")
+            localStorage.setItem("new_class_system_token",data.token)
+            
+           await this.getUserDetailMessage()
+           let sn = this.userMessage.userDetail.sn
+           if(sn==='学生'){
+                this.$router.push("/")
+           }else if(sn==='管理员'||sn==='老师'){
+                this.$router.push("/backstage_layout/system_home")
+           }
            return
        }
-
         this.logObject.submitLog = data.message
 
-    }
+    },
+    ...mapActions(['getUserDetailMessage'])
+
+
+  },
+  computed:{
+    ...mapState(['userMessage'])
   }
 
 };

@@ -57,3 +57,18 @@ export const updatePassword = (data)=>{
         data
     })
 }
+
+//邮箱绑定
+export const emailBindAccount = (data)=>{
+    return request({
+        method:"POST",
+        url:"/verification/email/bind",
+        headers:{ 'content-type': 'application/x-www-form-urlencoded' },
+        data,
+    })
+}
+
+
+
+
+

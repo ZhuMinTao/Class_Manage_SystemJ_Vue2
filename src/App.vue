@@ -5,6 +5,11 @@
 </template>
 
 <style lang="less">
+
+.el-tooltip__popper{ 
+    max-width:80% !important;
+  } 
+
 .default_title{
   display: block;
   margin-top: 100px;
