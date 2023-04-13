@@ -335,7 +335,18 @@ const routes = [
         path: 'my_account',
         name: 'my_account',
         component: () => import('@/views/set/AccountSafe.vue')
-      }
+      },
+      {
+        meta: {
+          link: '/backstage_layout/my_account',
+          breadList: [{ name: "用户信息", link: "/backstage_layout/my_account" },
+          { name: ""}
+          ],
+        },
+        path: "edit_user_message",
+        name: "edit_user_message",
+        component: () => import('@/views/set/EditUserMessage.vue')
+      },
     ]
   }
 
