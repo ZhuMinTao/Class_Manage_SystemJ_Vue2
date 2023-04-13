@@ -4,7 +4,8 @@
             <el-button type="primary"
                 @click="$router.push(`/user_message_set/week_test_update?opertion=insert`)">新增信息</el-button>
         </div>
-        <el-table :row-style="{ height: '150' }" header-align="center" aitem :data="showWeekTest" border
+        <el-table :row-style="{ height: '150' }" header-align="center" aitem  border
+        :data="showWeekTest.filter(data => !search || data.testTime.toLowerCase().includes(search.toLowerCase()))"
             style="width: 100%;height: 75%;">
             <el-table-column prop="testTime" label="测试时间" width="200">
             </el-table-column>
@@ -21,6 +22,9 @@
                 </template>
             </el-table-column>
             <el-table-column fixed="right" label="操作" width="220">
+                <template slot="header" slot-scope="scope">
+                        <el-input v-model="search" size="small" placeholder="请输入测试时间" />
+                </template>
                 <template slot-scope="scope">
                     <el-button size="mini" type="primary"
                         @click="$router.push(`/user_message_set/week_test_update?opertion=edit&weekTest=${JSON.stringify(scope.row)}`)">修改</el-button>
@@ -45,6 +49,7 @@ export default {
             showWeekTest: [],
             pageTatal: undefined,
             pageIndex: 1,
+            search:""
         };
     },
     methods: {

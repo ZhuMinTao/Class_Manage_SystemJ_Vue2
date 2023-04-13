@@ -20,7 +20,7 @@ export default {
 
     },
     async mounted(){
-        this.classActivityList = (await selectClassActivity({classId:this.userMessage.classId,isDate:true})).data.data
+        this.classActivityList = (await selectClassActivity({classId:this.userMessage.classId})).data.data
         this.classActivityList.map(item=>{
             item.title = item.activityContent
             item.date = item.activityDate

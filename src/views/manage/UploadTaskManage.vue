@@ -4,7 +4,10 @@
             <el-button type="primary"
                 @click="$router.push('/user_message_set/upload_task_update?opertion=insert')">新增任务</el-button>
         </div>
-        <el-table :row-style="{ height: '150' }" header-align="center" aitem :data="showTaskList" border
+        <el-table
+        :data="showTaskList.filter(data => !search || data.issuer.toLowerCase().includes(search.toLowerCase()))"
+
+         :row-style="{ height: '150' }" header-align="center" aitem  border
             style="width: 100%;height: 75%;">
             <el-table-column prop="issuer" label="发布人" width="100">
             </el-table-column>
@@ -21,6 +24,9 @@
             </el-table-column>
             <el-table-column prop="taskComment" label="完成内容" :show-overflow-tooltip="true"></el-table-column>
             <el-table-column fixed="right" label="操作" width="320">
+                <template slot="header" slot-scope="scope">
+                        <el-input v-model="search" size="small" placeholder="请输入发布人" />
+                    </template>
                 <template slot-scope="scope">
                     <el-button size="mini" @click="taskNotCompelete(scope.row.id)">未完成名单</el-button>
                     <el-button size="mini" type="success" @click="downLoadTaskVue(scope.row.id)">下载</el-button>
@@ -39,7 +45,7 @@
         <el-dialog title="未完成名单" :visible="taskCompeleteModel" @close="taskCompeleteModel = false">
             <div style="display: flex;justify-content: center;align-items: center;">
                 <el-empty description="全部完成" v-if="unfinishedRoster.length == 0"></el-empty>
-                <el-table  ref="singleTable" :data="unfinishedRoster" 
+                <el-table  ref="singleTable" v-if="unfinishedRoster.length != 0" :data="unfinishedRoster" 
                     style="max-height: 500px;">
                     <el-table-column type="index" width="80" >
                     </el-table-column>
@@ -68,6 +74,7 @@ export default {
             taskCompeleteModel: false,
             taskNotCompeleteList: [],
             unfinishedRoster: [],
+            search:"",
         };
     },
     methods: {

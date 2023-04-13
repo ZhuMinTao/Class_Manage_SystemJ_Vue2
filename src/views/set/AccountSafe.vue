@@ -119,7 +119,7 @@
                 </div>
             </el-tab-pane>
 
-            <el-tab-pane label="用户信息" name="userMessage">
+            <el-tab-pane label="用户信息" name="userMessage" v-if="userMessage.userDetail.sn!='学生'">
                 <div class="text item"
                     style="height: 150px;align-items: center;display: flex;justify-content: space-between;">
                     <div style="display: flex;width: :100%;;">
@@ -243,6 +243,7 @@ export default {
 
         },
         async sendCodeClick() {
+           
             if (this.reciprocal != -1) return
 
             //当账号已经绑定发送已绑定的邮箱，未绑定发送用户输入的邮箱
@@ -262,9 +263,10 @@ export default {
             }
         },
         async sendCodeUpdate(){
+            if (this.reciprocal != -1) return
+
             let {data} = (await sendEmailCode(this.accountPwdFrom.email))
 
-            console.log(data);
             if (data.code != 200) {
                 this.$message({
                     type: 'danger',

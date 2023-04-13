@@ -4,7 +4,8 @@
             <el-button type="primary"
                 @click="$router.push('/user_message_set/week_work_update?opertion=insert')">新增任务</el-button>
         </div>
-        <el-table :row-style="{ height: '150' }" header-align="center" aitem :data="showWeekWork" border
+        <el-table :row-style="{ height: '150' }" header-align="center" aitem  border
+        :data="showWeekWork.filter(data => !search || data.workTime.toLowerCase().includes(search.toLowerCase()))"
             style="width: 100%;height: 75%;">
             <el-table-column prop="workTime" label="完成时间" width="200">
             </el-table-column>
@@ -20,6 +21,9 @@
             </el-table-column>
             <el-table-column prop="remark" label="完成内容" :show-overflow-tooltip="true"></el-table-column>
             <el-table-column fixed="right" label="操作" width="220">
+                <template slot="header" slot-scope="scope">
+                        <el-input v-model="search" size="small" placeholder="请输入完成时间" />
+                </template>
                 <template slot-scope="scope">
                     <el-button size="mini" type="primary"
                         @click="$router.push(`/user_message_set/week_work_update?opertion=edit&weekWork=${JSON.stringify(scope.row)}`)">修改</el-button>
@@ -45,6 +49,7 @@ export default {
             pageTatal: undefined,
             showWeekWork: [],
             pageIndex: 1,
+            search:"",
         };
     },
     methods: {

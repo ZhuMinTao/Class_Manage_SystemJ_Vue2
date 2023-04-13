@@ -3,8 +3,8 @@
         <el-card class="box-card" style="height:600px;overflow: auto;">
 
             <el-empty v-if="taskList.length == 0" title="暂无数据"></el-empty>
-
-            <div v-for="o,index in taskList" :key="index" class="text item">
+            
+            <div  v-for="o,index in taskList"  :key="index" class="text item">
                 <div class="task_single">
                     <div >
                         <p style="font-size: 14px;margin-bottom: 20px;">

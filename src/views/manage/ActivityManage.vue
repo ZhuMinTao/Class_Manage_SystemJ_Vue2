@@ -4,7 +4,8 @@
             <el-button type="primary"
                 @click="$router.push(`/user_message_set/activity_update?opertion=insert`)">新增活动</el-button>
         </div>
-        <el-table :row-style="{ height: '150' }" header-align="center" aitem :data="classActivity" border
+        <el-table :row-style="{ height: '150' }" header-align="center" aitem  border
+        :data="classActivity.filter(data => !search || data.schemeUser.userName.toLowerCase().includes(search.toLowerCase()))"
             style="width: 100%;height: 75%;">
             <el-table-column prop="schemeUser.userName" label="策划人" width="150">
             </el-table-column>
@@ -26,6 +27,9 @@
                 </template>
             </el-table-column>
             <el-table-column fixed="right" label="操作" width="220">
+                <template slot="header" slot-scope="scope">
+                        <el-input v-model="search" size="small" placeholder="请输入策划人" />
+                    </template>
                 <template slot-scope="scope">
                     <el-button size="mini"
                         @click="$router.push(`/user_message_set/activity_update?classActiviy=${JSON.stringify(scope.row)}&opertion=select`)">查看</el-button>
@@ -50,6 +54,7 @@ export default {
         return {
             classActivity: [],
             pageTatal:undefined,
+            search:"",
         };
     },
     methods: {
